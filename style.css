@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+header {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(100, 100, 253);
+    position: fixed;
+    top: 0;
+}
+
+nav {
+    width: 60%;
+}
+
+ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+li {
+    font-size: 14px;
+}
+
+#Dino {
+    width: 100%;
+    min-height: 100vh;
+    background-color: red;
+}
+
+#velha {
+    width: 100%;
+    min-height: 100vh;
+    background-color: blue;
+}
+
+#memoria {
+    width: 100%;
+    min-height: 100vh;
+    background-color: yellow;
+}
+
+.square {
+    width: 16px;
+    height: 16;
+    background-color: black;
+    margin: 100px;
+}
