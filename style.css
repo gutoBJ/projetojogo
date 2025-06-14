@@ -8,10 +8,14 @@
     list-style: none;
 }
 
+html {
+    scroll-behavior: smooth
+}
+
 body {
     width: 100%;
     font-family: "Pixelify Sans", sans-serif;
-    background-color: rgb(6, 6, 112);
+    background-color: #fff;
 }
 
 header {
@@ -20,9 +24,10 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(100, 100, 253);
+    background-color: #000;
     position: fixed;
     top: 0;
+    z-index: 99;
 }
 
 nav {
@@ -38,28 +43,34 @@ ul {
 }
 
 li {
-    font-size: 14px;
+    font-size: 16px;
+    color: #fff;
+    transition: .6s;
 }
 
-#Dino {
+li:hover {
+    transform: scale(1.05);
+    color: aqua;
+}
+
+span {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    position: relative;
+    top: 200px;
+}
+
+.sec {
     width: 100%;
     min-height: 100vh;
-    background-color: red;
+    background: transparent;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-#velha {
-    width: 100%;
-    min-height: 100vh;
-    background-color: blue;
-}
-
-#memoria {
-    width: 100%;
-    min-height: 100vh;
-    background-color: yellow;
+    border-bottom: 4px solid #000;
 }
 
 .game {
