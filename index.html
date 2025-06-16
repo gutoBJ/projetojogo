@@ -11,38 +11,55 @@
     <header>
         <nav>
             <ul>
-                <a href="#Dino"><li>Jogo do Dinossauro</li></a>
-                <a href="#velha"><li>Jogo da Velha</li></a>
-                <a href="#memoria"><li>Jogo da Memória</li></a>
+                <a href="#Dino" class="a-item selecionado"><li>Jogo do Dinossauro</li></a>
+                <a href="#velha" class="a-item"><li>Jogo da Velha</li></a>
+                <a href="#memoria" class="a-item"><li>Jogo da Memória</li></a>
             </ul>
         </nav>
     </header>
 
-    <section id="Dino" class="sec">
+    <section id="Dino" class="sec1">
         <h1>Jogo do Dinossauro</h1>
 
         <div class="game">
             <div id="dino"></div>
             <div id="cactus"></div>
+            <div id="floor"></div>
         </div>
 
     </section>
 
-    <section id="velha" class="sec">
-        <h1>Jogo da Velha</h1>
+    <section id="velha" class="sec1">
+        <div class="sec">
+            <h1>Jogo da Velha</h1>
 
-        <div class="game">
-            <div id="dino"></div>
-            <div id="cactus"></div>
+            <div class="alinhar-b">
+                <h3>Escolha:</h3>
+                <div>
+                    <button class="xouo">x</button>
+                    <button class="xouo">o</button>
+                </div>
+            </div>
+    
+            <div class="game-velha">
+               <button></button>
+               <button></button>
+               <button></button>
+               <button></button>
+               <button></button>
+               <button></button>
+               <button></button>
+               <button></button>
+               <button></button>
+            </div>
         </div>
     </section>
 
-    <section id="memoria" class="sec">
+    <section id="memoria" class="sec1">
         <h1>Jogo da Memória</h1>
 
-        <div class="game">
-            <div id="dino"></div>
-            <div id="cactus"></div>
+        <div class="game-memoria">
+            
         </div>
     </section>
 
@@ -51,7 +68,10 @@
         <p>Criador</p>
     </footer>
 
-    <!--<script src="./script.js"></script>-->
+    <!-- <script src="./dino.js"></script> -->
+     <script src="./script.js"></script>
+    <script src="./velha.js"></script>
+    <script src="./memoria.js"></script>
 
 </body>
 </html>

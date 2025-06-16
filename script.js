@@ -1,26 +1,29 @@
-const dino = document.getElementById("dino")
-const cactus = document.getElementById("cactus")
+const item = document.querySelectorAll('.a-item')
 
-function jump() {
-    if (dino.classList != "jump") {
-        dino.classList.add("jump")
 
-        setTimeout(function () {
-            dino.classList.remove("jump")
-        }, 300)
-    }
+function activeLink() {
+    item.forEach((item) =>
+    item.classList.remove('selecionado'))
+    this.classList.add('selecionado')
 }
 
-let isAlive = setInterval(function () {
-    let dinoTop = parseInt(window.getComputedStyle(dino).getPropertyValue("top"))
+item.forEach((item) => item.addEventListener('click', activeLink))
 
-    let cactusLeft = parseInt(window.getComputedStyle(cactus).getPropertyValue("left"))
 
-    if (cactusLeft < 50 && cactusLeft > 0 && dinoTop >= 140) {
-        alert("Game Over!")
-    }
-}, 10)
+const sections = document.querySelectorAll('.sections')
 
-document.addEventListener("keydown", function (event) {
-    jump()
+let currentSection = 'index-link'
+window.addEventListener('scroll', () => {
+    sections.forEach(sections => {
+        if (window.scrollY >= (sections.offsetTop - 39)) {
+            currentSection = sections.id
+        }
+    })
+
+    item.forEach(item => {
+        if (item.href.includes(currentSection)) {
+            document.querySelector('.selecionado').classList.remove('selecionado')
+            item.classList.add('selecionado')
+        }
+    })
 })
