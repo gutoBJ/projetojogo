@@ -9,22 +9,69 @@
 // let x_o9 = document.getElementById('x_o9')
 
 const botoesVelha = document.querySelectorAll('.botao-velha')
-
+const resultado = document.getElementById('resultado')
 let contador = 0
+const reco = document.getElementById("reco")
 
-console.log(botoesVelha)
-
-for (let i = 0; i <= botoesVelha.length; i++) {
+for (let i = 0; i < botoesVelha.length; i++) {
     botoesVelha[i].addEventListener('click', () => {
+        if (botoesVelha[i].textContent !== '') return // Evita sobrescrever
+
         if (contador % 2 === 0) {
             botoesVelha[i].textContent = 'X'
-            contador++
         } else {
             botoesVelha[i].textContent = 'O'
-            contador = 0
+        }
+
+        contador++
+
+        if (verificarVitoria('X')) {
+            resultado.textContent = 'Jogador X venceu!'
+            desativarBotoes()
+            mostrarBotao()
+        } else if (verificarVitoria('O')) {
+            resultado.textContent = 'Jogador O venceu!'
+            desativarBotoes()
+            mostrarBotao()
+        } else if (contador === 9) {
+            resultado.textContent = 'Deu velha!'
+            mostrarBotao()
         }
     })
 }
+
+function mostrarBotao() {
+    reco.style.display = 'block'
+}
+
+function verificarVitoria(jogador) {
+    const b = botoesVelha
+
+    const combinacoes = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ]
+
+    return combinacoes.some(comb =>
+        comb.every(indice => b[indice].textContent === jogador)
+    )
+}
+
+function desativarBotoes() {
+    botoesVelha.forEach(botao => botao.disabled = true)
+}
+
+
+reco.addEventListener("click", () => {
+    window.location.hash = 'secao1'
+    window.location.reload()
+})
 
 
 
@@ -33,22 +80,6 @@ for (let i = 0; i <= botoesVelha.length; i++) {
 // const l3 = [x_o7, x_o8, x_o9]
 
 // const velha = [l1, l2, l3]
-
-function venceu(player) {
-    
-}
-
-if (x_o1 === 'x' && x_o2 === 'x' && x_o3 === 'x') {
-
-}
-
-function perdeu(player2) {
-
-}
-
-function deuVelha(player, player2) {
-
-}
 
 
 

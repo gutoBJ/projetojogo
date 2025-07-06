@@ -18,7 +18,7 @@
         </nav>
     </header>
 
-    <section id="Dino" class="sec1">
+    <section id="Dino" class="sections">
         <h1>Jogo do Dinossauro</h1>
 
         <div class="game">
@@ -29,7 +29,7 @@
 
     </section>
 
-    <section id="velha" class="sec1">
+    <section id="velha" class="sections">
         <div class="sec">
             <h1>Jogo da Velha</h1>
 
@@ -52,14 +52,32 @@
                <button class="botao-velha"></button>
                <button class="botao-velha"></button>
             </div>
+
+            <p id="resultado"></p>
+
+            <button id="reco" style="display: none;">Recomeçar</button>
         </div>
     </section>
 
-    <section id="memoria" class="sec1">
-        <h1>Jogo da Memória</h1>
+    <section id="memoria" class="sections">
+        <div class="sec">
+            <h1>Jogo da Memória</h1>
+    
+            <div class="game-velha">
+                   <button class="botao-memoria"><img src="./assets/emoji.png" alt=""></button>
+                   <button class="botao-memoria"><img src="./assets/wink.png" alt=""></button>
+                   <button class="botao-memoria"><img src="./assets/oculos-escuros.png" alt=""></button>
+                   <button class="botao-memoria"><img src="./assets/oculos-escuros.png" alt=""></button>
+                   <button class="botao-memoria"><img src="./assets/emoji.png" alt=""></button>
+                   <button class="botao-memoria"><img src="./assets/wow.png" alt=""></button>
+                   <button class="botao-memoria"><img src="./assets/emoji.png" alt=""></button>
+                   <button class="botao-memoria"><img src="./assets/wow.png" alt=""></button>
+                   <button class="botao-memoria"><img src="./assets/wink.png" alt=""></button>
+            </div>
 
-        <div class="game-memoria">
-            
+            <p id="mensagem-final" style="display: none;"></p>
+
+            <button id="reco2">Recomeçar</button>
         </div>
     </section>
 
@@ -69,7 +87,7 @@
     </footer>
 
     <script src="./dino.js"></script>
-     <script src="./script.js"></script>
+    <script src="./script.js"></script>
     <script src="./velha.js"></script>
     <script src="./memoria.js"></script>
 
