@@ -1,8 +1,10 @@
 const dino = document.getElementById("dino")
 const cactus = document.getElementById("cactus")
 
+let gameOver = false;
+
 function jump() {
-    if (dino.classList != "jump") {
+    if (!dino.classList.contains("jump") && !gameOver) {
         dino.classList.add("jump")
 
         setTimeout(function () {
@@ -17,10 +19,12 @@ let isAlive = setInterval(function () {
     let cactusLeft = parseInt(window.getComputedStyle(cactus).getPropertyValue("left"))
 
     if (cactusLeft < 50 && cactusLeft > 0 && dinoTop >= 140) {
-        alert("Game Over!")
+        alert("Game Over!");
+        gameOver = true;
+        clearInterval(isAlive)
     }
 }, 10)
 
-document.addEventListener("keydown", function (event) {
+document.addEventListener("click", function () {
     jump()
 })

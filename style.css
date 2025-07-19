@@ -142,6 +142,11 @@ span {
     grid-template-columns: 1fr 1fr 1fr;
 }
 
+.game-memoria {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
 #velha h1 {
     position: static;
 }
@@ -151,6 +156,14 @@ span {
 }
 
 .game-velha button {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 50px;
+}
+
+.game-memoria button {
     width: 100px;
     height: 100px;
     margin: 5px;
