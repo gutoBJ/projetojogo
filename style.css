@@ -137,6 +137,30 @@ span {
     margin: auto;
 }
 
+.alinhar-cont {
+    position: relative;
+    top: 10px;
+    left: 450px;
+    display: flex;
+    gap: 10px;
+}
+
+
+.alinhar-cont span {
+    font-family: "Pixelify Sans", sans-serif;
+}
+
+.alinhar-over {
+    position: relative;
+    width: 100%;
+    top: 25%;
+    text-align: center;
+}
+
+.alinhar-over h3 {
+    font-size: 30px;
+}
+
 .game-velha {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -174,15 +198,42 @@ span {
 #dino {
     width: 50px;
     height: 50px;
-    background-image: url(New\ Piskel.gif);
+    background-image: url("./assets/New\ Piskel.gif");
     background-size: 50px 50px;
     position: relative;
-    top: 135px;
+    top: 70px;
     left: 10px;
 }
 
 .jump {
-    animation: jump 0.5s linear ;
+    animation: jump 0.9s ease-in-out;
+}
+
+@keyframes jump {
+    0% {
+        top: 135px;
+    }
+    20% {
+        top: 100px;
+    }
+    40% {
+        top: 60px;
+    }
+    50% {
+        top: 50px;
+    }
+    60% {
+        top: 60px;
+    }
+    75% {
+        top: 80px;
+    }
+    87% {
+        top: 110px;
+    }
+    100% {
+        top: 135px;
+    }
 }
 
 img {
@@ -191,37 +242,16 @@ img {
     display: none;
 }
 
-@keyframes jump {
-    0% {
-        top: 150px;
-    }
-
-    30% {
-        top: 120px;
-    }
-
-    50% {
-        top: 70px;
-    }
-
-    80% {
-        top: 120px;
-    }
-
-    100% {
-        top: 150px;
-    }
-}
-
 #cactus {
     width: 25px;
     height: 40px;
     position: relative;
-    top: 97px;
+    top: 25px;
     left: 580px;
     background-image: url("./assets/image-2.png.png");
-    background-size: auto;
+    background-size: cover;
     background-repeat: no-repeat;
+    background-position: 50%;
     animation: block 3s infinite linear;
 }
 
@@ -232,7 +262,7 @@ img {
     background-repeat: repeat-x;
     background-position: 50% 50%;
     position: relative;
-    top: 85px;
+    top: 20px;
 }
 
 @keyframes block {

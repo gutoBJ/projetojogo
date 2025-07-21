@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dino game</title>
+    <title>Site games</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="./New Piskel.gif" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/controle-de-video-game.png" type="image/x-icon">
 </head>
 <body>
     <header>
@@ -21,7 +21,16 @@
     <section id="Dino" class="sections">
         <h1>Jogo do Dinossauro</h1>
 
-        <div class="game">
+        <div class="game" id="game">
+            <div class="alinhar-cont">
+                <span id="melhor">Melhor: </span>
+                <span id="atual">Atual: </span>
+            </div>
+
+            <div class="alinhar-over" style="visibility: hidden;">
+                <h3>Game Over</h3>
+                <button id="rec">Recomeçar</button>
+            </div>
             <div id="dino"></div>
             <div id="cactus"></div>
             <div id="floor"></div>

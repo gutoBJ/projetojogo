@@ -1,5 +1,7 @@
-const item = document.querySelectorAll('.a-item')
 
+
+
+const item = document.querySelectorAll('.a-item')
 
 function activeLink() {
     item.forEach((item) =>
