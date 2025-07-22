@@ -1,4 +1,19 @@
+/*
+Lógica de programação 
 
+é um conjunto de técnicas e conhecimentos 
+que utilizamos para colocar instruções, informações em uma sequência lógica para chegar em um determinado resultado
+
+Algoritmo
+
+é a sequência lógica que crio pro meio da lógica de programação
+eles precisam ser extremamente precisos e seguir uma lógica coerente, pois o computador, a máquina só vai entender se seu algoritmo estiver assim da maneira correta
+
+Linguagem de programação
+
+é por meio delas que escrevemos nossos algoritmos
+neste caso é o javascript
+*/
 
 
 const item = document.querySelectorAll('.a-item')
