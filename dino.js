@@ -1,92 +1,135 @@
-const dino = document.getElementById("dino")
-const cactus = document.getElementById("cactus")
-const game = document.getElementById("game")
-const over = document.querySelector('.alinhar-over')
+// Seleciona os elementos do jogo
+const dino = document.getElementById("dino");
+const cactus = document.getElementById("cactus");
+const game = document.getElementById("game");
+const over = document.querySelector('.alinhar-over'); // tela de Game Over
+const botaoRecomecar = document.getElementById("rec"); // botão de reiniciar
+
+// Elementos de pontuação
 const spanAtual = document.getElementById("atual");
 const spanMelhor = document.getElementById("melhor");
 
+// Variáveis de controle do pulo
+let isJumping = false;       // se o dino está pulando
+let velocity = 0;            // velocidade atual do pulo
+let gravity = 0.6;           // força da gravidade
+let jumpStrength = -10;      // força do pulo
+let dinoPosition = 140;      // posição inicial do dino (top)
+const groundLevel = 140;     // altura do chão
+
+// Variáveis de pontuação
 let pontuacao = 0;
+let melhor = localStorage.getItem("melhorPontuacao") || 0; // melhor pontuação salva
+spanMelhor.textContent = `Melhor: ${melhor}`;
 
-let isJumping = false;
-let velocity = 0;
-let gravity = 0.6;
-let jumpStrength = -10;
-let dinoPosition = 135;
+// Variáveis de controle
+let intervaloPontuacao; // loop da pontuação
+let isAlive;             // loop da verificação de colisão
+let gameOver = false;    // se o jogo acabou
 
-// Lógica de pulo com física
+// Atualiza a posição do dino simulando física de pulo
 function updateDinoPosition() {
     if (isJumping) {
-        velocity += gravity;
-        dinoPosition += velocity;
+        velocity += gravity;             // aplica gravidade
+        dinoPosition += velocity;        // atualiza posição vertical
 
-        if (dinoPosition >= 135) {
-            dinoPosition = 135;
+        // Quando encostar no chão
+        if (dinoPosition >= groundLevel) {
+            dinoPosition = groundLevel;
             isJumping = false;
         }
 
+        // Aplica a nova posição no estilo CSS
         dino.style.top = `${dinoPosition}px`;
     }
 }
-
+// Executa a função acima a cada 20ms
 setInterval(updateDinoPosition, 20);
 
-let intervaloPontuacao = setInterval(() => {
+// Inicia a contagem da pontuação
+intervaloPontuacao = setInterval(() => {
     if (!gameOver) {
-        pontuacao++;
+        pontuacao++; // aumenta pontuação atual
         spanAtual.textContent = `Atual: ${pontuacao}`;
 
-        // Atualiza a melhor pontuação
+        // Se bater o recorde
         if (pontuacao > melhor) {
             melhor = pontuacao;
+            localStorage.setItem("melhorPontuacao", melhor);
             spanMelhor.textContent = `Melhor: ${melhor}`;
         }
     }
-}, 100); // Aumenta 1 ponto a cada 100ms
+}, 100); // pontuação aumenta a cada 100ms
 
-
-let gameOver = false;
-
+// Função que executa o pulo
 function jump() {
-    if (!dino.classList.contains("jump") && !gameOver) {
-        dino.classList.add("jump")
-
-        setTimeout(function () {
-            dino.classList.remove("jump")
-        }, 300)
-    }
-
+    // Só pula se não estiver pulando e o jogo não tiver acabado
     if (!isJumping && !gameOver) {
         velocity = jumpStrength;
         isJumping = true;
     }
 }
 
+// Verifica colisão entre o dino e o cacto
 function verificarColisao() {
-    const dinoRect = dino.getBoundingClientRect();
-    const cactusRect = cactus.getBoundingClientRect();
+    const dinoRect = dino.getBoundingClientRect();     // área do dino
+    const cactusRect = cactus.getBoundingClientRect(); // área do cacto
 
-    // Verifica se os retângulos colidem
+    // Ajustes para tornar a hitbox mais justa
+    const margemHorizontal = 8;
+    const margemVertical = 10;
+
+    // Reduz o tamanho do retângulo do cacto para colisão mais precisa
+    const cactusHitbox = {
+        left: cactusRect.left + margemHorizontal,
+        right: cactusRect.right - margemHorizontal,
+        top: cactusRect.top + margemVertical,
+        bottom: cactusRect.bottom - margemVertical
+    };
+
+    // Verifica se as hitboxes colidem
     const colidiu = (
-        dinoRect.right > cactusRect.left &&
-        dinoRect.left < cactusRect.right &&
-        dinoRect.bottom > cactusRect.top &&
-        dinoRect.top < cactusRect.bottom
+        dinoRect.right > cactusHitbox.left &&
+        dinoRect.left < cactusHitbox.right &&
+        dinoRect.bottom > cactusHitbox.top &&
+        dinoRect.top < cactusHitbox.bottom
     );
 
-    if (colidiu) {
-        over.style.visibility = 'visible'
+    // Se colidiu e o jogo ainda não acabou
+    if (colidiu && !gameOver) {
         gameOver = true;
+
+        // Para a animação e fixa o cacto no lugar exato
+        const cactusLeft = window.getComputedStyle(cactus).getPropertyValue("left");
+        cactus.style.animation = "none";
+        cactus.style.left = cactusLeft;
+
+        // Para os loops de verificação e pontuação
         clearInterval(isAlive);
-        clearTimeout(tempoParaVencer);
-        cactus.style.animation = "none"; // Para a animação
         clearInterval(intervaloPontuacao);
-        dino.style.backgroundImage = "./assets/New Piskel-20250721-165241.piskel"
+
+        // Troca a imagem do dino para estática (dino morto)
+        dino.style.backgroundImage = 'url("./assets/New Piskel.png")';
+
+        // Exibe a tela de Game Over
+        over.style.visibility = 'visible';
     }
 }
+// Verifica colisão a cada 10ms
+isAlive = setInterval(verificarColisao, 10);
 
+// Evento de recomeçar o jogo
+botaoRecomecar.addEventListener("click", () => {
+    // Restaura a animação do cacto
+    cactus.style.animation = "block 3s infinite linear";
+    cactus.style.left = "";
 
-let isAlive = setInterval(verificarColisao, 10);
+    // Restaura a imagem do dino
+    dino.style.backgroundImage = 'url("./assets/New Piskel.png")';
 
-game.addEventListener("click", function () {
-    jump()
-})
+    // Recarrega a página
+    window.location.reload();
+});
+
+// Evento de clique na área do jogo faz o dino pular
+game.addEventListener("click", jump);
